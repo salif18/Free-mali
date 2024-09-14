@@ -50,7 +50,7 @@ export const MyStoreProvider = (props) => {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU";
 
     //url
-    const domaineURI = 'http://localhost:3002';
+    const domaineURI = "https://free-mali-restapi.vercel.app";
 
     // context value
   const contextValue = {
