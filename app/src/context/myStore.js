@@ -138,8 +138,8 @@ export const MyStoreProvider = (props) => {
  
 
   //nom de domaine
-  const domaineURL ='http://localhost:3002';
-
+  // const domaineURL ='http://localhost:3002';
+  const domaineURL ="https://free-mali-restapi.vercel.app";
     // context value
   const contextValue = {
     domaineURL:domaineURL,
