@@ -18,7 +18,7 @@ const videosRtr = require('./routes/videos');
 const imagesRtr = require('./routes/images')
 //configurations
 app.use(cors({
-    origin: ['https://free-mali.vercel.app', 'https://free-mali.restapi.vercel.app'],
+    origin:'https://free-mali.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept'],
     credentials: true // Si vous avez besoin d'envoyer des cookies ou des headers d'autorisation
