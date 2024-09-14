@@ -1,6 +1,6 @@
 //importations des modules
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");   
+const bcrypt = require("bcryptjs");   
 const nodemailer = require('nodemailer');  
 const twilio = require("twilio");
 const dotenv = require('dotenv');

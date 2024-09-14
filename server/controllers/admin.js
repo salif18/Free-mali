@@ -1,6 +1,6 @@
 //importations des modules
 const jwt = require("jsonwebtoken"); 
-const bcrypt = require("bcrypt"); 
+const bcrypt = require("bcryptjs"); 
 const { PhoneNumberUtil } = require("google-libphonenumber");
 const dotenv = require("dotenv");
 const Administrateurs = require("../models/adminSchema"); 

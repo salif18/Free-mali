@@ -1,6 +1,6 @@
 //importation
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const Users = require("../models/collectionUsers"); 
 const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
