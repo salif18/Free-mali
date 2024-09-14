@@ -8,7 +8,7 @@ import ShortcutIcon from '@mui/icons-material/Shortcut';
 import ArchiveIcon from '@mui/icons-material/Archive';
 
 const SingleCourrier = () => {
-  const { users, userId, profil,token,setClients,setUsers } = useContext(MyStore)
+  const { users, userId, profil,token,domaineURI,setClients,setUsers } = useContext(MyStore)
     const { id } = useParams();
     const [item , setItem] = useState({});
 
@@ -20,7 +20,7 @@ const SingleCourrier = () => {
     };
     //recuperer les products
     useEffect(()=>{
-      axios.get('http://localhost:3002/auth/users&Profile',Headers)
+      axios.get(`${domaineURI}/auth/users&Profile`,Headers)
       .then((res)=>{
         res && setUsers(res.data);
         setClients(res.data.filter((x)=>x.isPrestataire === false))
@@ -28,7 +28,7 @@ const SingleCourrier = () => {
     },[]);
     
     useEffect(()=>{
-      axios.get(`http://localhost:3002/courriers/one/${id}`,Headers)
+      axios.get(`${domaineURI}/courriers/one/${id}`,Headers)
       .then(res => setItem(res.data))
       .catch(err => console.log(err))
     },[])
@@ -47,7 +47,7 @@ const notification = {
   // boutton pour envoyer la notification au prestataire
   const sendNotifications =()=>{
     axios
-     .post(`http://localhost:3002/notifications`, notification )
+     .post(`${domaineURI}/notifications`, notification )
      .then((res) => res.data)
      .catch((err) => console.log(err));
  }
@@ -59,7 +59,7 @@ const notification = {
     const handleRepondre =(reponses)=>{
         if(reponse.length > 0){
           reponses = { userId:userId, reponse:reponse}
-          axios.put(`http://localhost:3002/courriers/reponse/${item._id}`,{reponses})
+          axios.put(`${domaineURI}/courriers/reponse/${item._id}`,{reponses})
           .then((res)=> res.data)
           .catch((err) => console.log(err));
           setReponse("");
@@ -87,7 +87,7 @@ const notification = {
   
     const confirmerArchive = () => {
       setAfficherConfirmation(false);
-      axios.post('http://localhost:3002/archives/couriers',item )
+      axios.post(`${domaineURI}/archives/couriers`,item )
       .then(res => res.data)
       .catch(err => console.log(err))
     };

@@ -10,7 +10,7 @@ import BackspaceIcon from '@mui/icons-material/Backspace';
 import { MyStore } from '../context/myStore';
 import { Navigate } from "react-router";
 const Clients = () => {
-    const { clients, setUsers,setClients, isInLine ,token} = useContext(MyStore)
+    const { clients, setUsers,setClients, isInLine ,token, domaineURI} = useContext(MyStore)
     const navigate = useNavigate()
     
     const Headers = {
@@ -22,7 +22,7 @@ const Clients = () => {
     
     //recuperer les products
     useEffect(()=>{
-      axios.get('http://localhost:3002/auth/users&Profile',Headers)
+      axios.get(`${domaineURI}/auth/users&Profile`,Headers)
       .then((res)=>{
         res && setUsers(res.data);
         setClients(res.data.filter((x)=>x.isPrestataire === false))
@@ -30,7 +30,7 @@ const Clients = () => {
     },[]);
 
     const handleDelete =(id)=>{
-        axios.delete(`http://localhost:3003/authentification/customer/delete/${id}`,Headers)
+        axios.delete(`${domaineURI}/authentification/customer/delete/${id}`,Headers)
       setClients(clients.filter(x => x._id !==id))
     }
     const columns = [

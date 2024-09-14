@@ -9,7 +9,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 const Messagerie = () => {
-    const { userId,setClients,setUsers, token, users, couriers, setCouriers, isInLine } = useContext(MyStore);
+    const { userId,setClients,setUsers, domaineURI,token, users, couriers, setCouriers, isInLine } = useContext(MyStore);
     const navigate = useNavigate();
 
 
@@ -22,7 +22,7 @@ const Messagerie = () => {
     
     //recuperer les products
     useEffect(()=>{
-      axios.get('http://localhost:3002/auth/users&Profile',Headers)
+      axios.get(`${domaineURI}/auth/users&Profile`,Headers)
       .then((res)=>{
         res && setUsers(res.data);
         setClients(res.data.filter((x)=>x.isPrestataire === false))
@@ -30,7 +30,7 @@ const Messagerie = () => {
     },[]);
     
     useEffect(()=>{
-         axios.get('http://localhost:3002/courriers',Headers)
+         axios.get(`${domaineURI}/courriers`,Headers)
          .then(res => 
           setCouriers(res.data)
           ).catch(err => console.log(err)) 
@@ -52,7 +52,7 @@ const Messagerie = () => {
       // Appelez ici la fonction de suppression réelle
       // props.onSuppression() ou quelque chose de similaire
       couriers.map((archive)=>(
-        axios.post('http://localhost:3002/archives/couriers',archive,Headers)
+        axios.post(`${domaineURI}/archives/couriers`,archive,Headers)
         .then(res => res.data)
         .catch(err => console.log(err))
        ))
@@ -68,7 +68,7 @@ const Messagerie = () => {
   const sendNotifications =()=>{
     users.map((x)=>
       axios
-     .post(`http://localhost:3002/notifications`,
+     .post(`${domaineURI}/notifications`,
      { 
        senderId:userId,
        receiverId:x._id,
@@ -84,7 +84,7 @@ const Messagerie = () => {
       e.preventDefault();
       users.map((x)=>
       axios
-        .post(`http://localhost:3002/courriers`, {
+        .post(`${domaineURI}/courriers`, {
           userId:x._id ,names:'FreeMali', email:'freemali@gmail.com', sujet:sujets, messages:messages
         },Headers)
         .then((res) => res.data)

@@ -7,7 +7,7 @@ import SharePosition from "../constants/maps/SharePosition";
 import CommentPresta from "../constants/cards/CommentPresta";
 import MarkunreadIcon from '@mui/icons-material/Markunread';
 const SinglePrestataire = () => {
-  const {isInLine,token ,userId} =useContext(MyStore)
+  const {isInLine,token ,domaineURI,userId} =useContext(MyStore)
   const [item, setItem] = useState({});
   const [user , setUser] = useState({})
   const { id } = useParams();
@@ -26,7 +26,7 @@ const SinglePrestataire = () => {
       
     const getUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:3002/auth/user/${id}`,Headers);
+        const res = await axios.get(`${domaineURI}/auth/user/${id}`,Headers);
         if (res) {
           const data = await res.data;
           setUser(data);
@@ -41,7 +41,7 @@ const SinglePrestataire = () => {
   useEffect(() => {
     const getItem = async () => {
       try {
-        const res = await axios.get(`http://localhost:3002/profiles/prestaProfile/${id}`,Headers);
+        const res = await axios.get(`${domaineURI}/profiles/prestaProfile/${id}`,Headers);
         if (res) {
           const data = await res.data;
          
@@ -72,7 +72,7 @@ const [newStatus ,setNewStatus] = useState('');
 
   if (newStatus || newStatus.length > 0) {
     try {
-      const res = await axios.put(`http://localhost:3002/auth/admin/isprestataire/status/${id}`, {newStatus});
+      const res = await axios.put(`${domaineURI}/auth/admin/isprestataire/status/${id}`, {newStatus});
       if (res) {
         await res.data;
       }
@@ -96,7 +96,7 @@ const notification = {
     // boutton pour envoyer la notification au prestataire
   const sendNotifications =()=>{
     axios
-     .post(`http://localhost:3002/notifications`, notification )
+     .post(`${domaineURI}/notifications`, notification )
      .then((res) => res.data)
      .catch((err) => console.log(err));
  }
@@ -109,7 +109,7 @@ const notification = {
     const handleSubmit = (contacts) => {
       contacts = {userId:user._id ,names:'FreeMali', email:'freemali@gmail.com', sujet:sujets, messages:messages}
       axios
-        .post(`http://localhost:3002/courriers`, {...contacts})
+        .post(`${domaineURI}/courriers`, {...contacts})
         .then((res) => res.data)
         .catch((err) => console.log(err));
         setMessages('');

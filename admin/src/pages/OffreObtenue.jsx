@@ -5,14 +5,14 @@ import axios from 'axios';
 import Opportunites from '../constants/cards/Opportunites';
 
 const OffreObtenue = () => {
-const { offres ,setOffres } = useContext(MyStore) 
+const { offres ,setOffres, domaineURI } = useContext(MyStore) 
 
 //recuperer id dans url 
 const { id } = useParams();
 
 //recuperer les offres 
 useEffect(()=>{
-    axios.get('http://localhost:3002/offres')
+    axios.get(`${domaineURI}/offres`)
     .then((res) =>{
         setOffres(res.data)
     }).catch((err) => console.log(err))

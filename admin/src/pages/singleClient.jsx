@@ -9,7 +9,7 @@ import CardOffres from '../constants/cards/Offres';
 
 const SingleClient = () => {
   
-  const {isInLine, userId, token , } = useContext(MyStore)
+  const {isInLine, userId, token ,domaineURI } = useContext(MyStore)
   const {id} = useParams()
  const [user, setUser] = useState({});
  const [userLogin, setUserLogin] = useState({});
@@ -28,7 +28,7 @@ const Headers = {
       
   const getUser = async () => {
     try {
-      const res = await axios.get(`http://localhost:3002/auth/user/${id}`,Headers);
+      const res = await axios.get(`${domaineURI}/auth/user/${id}`,Headers);
       if (res) {
         const data = await res.data;
         setUserLogin(data);
@@ -42,14 +42,14 @@ const Headers = {
 
 
     useEffect(()=>{
-     axios.get(`http://localhost:3002/profiles/prestaProfile/${id}`,Headers)
+     axios.get(`${domaineURI}/profiles/prestaProfile/${id}`,Headers)
      .then(res => res.data)
      .then(data => setUser(data))
      .catch((err)=>console.log(err))
     },[])
 
     useEffect(()=>{
-       axios.get(`http://localhost:3002/offres/user/${id}`,Headers)
+       axios.get(`${domaineURI}/offres/user/${id}`,Headers)
        .then(res => res.data)
        .then(data => setOffres(data))
        .catch(err => console.log(err))
@@ -70,7 +70,7 @@ const Headers = {
   
     if (newStatus || newStatus.length > 0) {
       try {
-        const res = await axios.put(`http://localhost:3002/auth/admin/isprestataire/status/${id}`, {newStatus});
+        const res = await axios.put(`${domaineURI}/auth/admin/isprestataire/status/${id}`, {newStatus});
         if (res) {
           await res.data;
         }
@@ -94,7 +94,7 @@ const notification = {
     // boutton pour envoyer la notification au prestataire
   const sendNotifications =()=>{
     axios
-     .post(`http://localhost:3002/notifications`, notification )
+     .post(`${domaineURI}/notifications`, notification )
      .then((res) => res.data)
      .catch((err) => console.log(err));
  }
@@ -107,7 +107,7 @@ const notification = {
     const handleSubmit = (contacts) => {
       contacts = {userId:user.userId ,names:'FreeMali', email:'freemali@gmail.com', sujet:sujets, messages:messages}
       axios
-        .post(`http://localhost:3002/courriers`, {...contacts})
+        .post(`${domaineURI}/courriers`, {...contacts})
         .then((res) => res.data)
         .catch((err) => console.log(err));
         setMessages('');

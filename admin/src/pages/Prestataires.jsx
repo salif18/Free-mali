@@ -12,7 +12,7 @@ import { Navigate } from 'react-router';
 
 const Prestataires = () => {
     const navigate = useNavigate()
-const { users, setUsers,setClients, isInLine,token } = useContext(MyStore)
+const { users, setUsers,setClients, isInLine,token,domaineURI } = useContext(MyStore)
 const Headers = {
   headers: {
     "Content-type": "application/json",
@@ -22,7 +22,7 @@ const Headers = {
 
 //recuperer les products
 useEffect(()=>{
-  axios.get('http://localhost:3002/auth/users&Profile',Headers)
+  axios.get(`${domaineURI}/auth/users&Profile`,Headers)
   .then((res)=>{
     res && setUsers(res.data);
     setClients(res.data.filter((x)=>x.isPrestataire === false))
@@ -30,7 +30,7 @@ useEffect(()=>{
 },[]);
 
     const handleDelete =(id)=>{
-        axios.delete(`http://localhost:3002/prestataires/${id}`,Headers)
+        axios.delete(`${domaineURI}/prestataires/${id}`,Headers)
       setUsers(users.filter(x => x._id !== id))
     }
   

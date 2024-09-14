@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const Offres = () => {
-    const { setOffres, offres,token, isInLine } = useContext(MyStore)
+    const { setOffres, offres,token, isInLine ,domaineURI} = useContext(MyStore)
 
     const [valeurShow, setValeurShow] = useState(offres.length);
     const selcectionNumber = [{value:offres.length,label:'Afficher tous '},
@@ -21,7 +21,7 @@ const Offres = () => {
   };
      //recuperer les commandes
      useEffect(()=>{
-      axios.get('http://localhost:3002/offres',Headers)
+      axios.get(`${domaineURI}/offres`,Headers)
       .then((res)=>{
         res && setOffres(res.data)
       }).catch(err => console.log(err))

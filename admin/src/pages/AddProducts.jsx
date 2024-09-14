@@ -7,7 +7,7 @@ import { Navigate } from "react-router";
 import { MyStore } from "../context/myStore";
 
 const AddProducts = () => {
-  const { isInLine ,token} = useContext(MyStore);
+  const { isInLine ,token, domaineURI} = useContext(MyStore);
   const validationSchema = yup.object({
     name: yup.string().required("Nom du produit est obligatoire"),
     image: yup.string().required("l'image du produit est obligatoire"),
@@ -75,7 +75,7 @@ const AddProducts = () => {
   
   const handleSubmit = async (formData,onSubmittingProps) => {
     try {
-      const res = await axios.post(`http://localhost:3003/products`, formData, Headers);
+      const res = await axios.post(`${domaineURI}/products`, formData, Headers);
       if (res) {
         await res.data;
         await formSubmission(formData);

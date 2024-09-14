@@ -4,13 +4,13 @@ import { MyStore } from '../context/myStore';
 import CardNotification from '../constants/cards/cardNotification';
 import axios from 'axios'
 const Notifications = () => {
-    const { isInLine,userId,setNotifications, notifications} = useContext(MyStore)
+    const { isInLine,userId,setNotifications,domaineURI, notifications} = useContext(MyStore)
     
 
       // recuperer ses notification 
 useEffect(()=>{
     axios
-     .get(`http://localhost:3002/notifications/receiver/admin/${userId}`)
+     .get(`${domaineURI}/notifications/receiver/admin/${userId}`)
      .then((res)=> {
       setNotifications(res.data)
     })

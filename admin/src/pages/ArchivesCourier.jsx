@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { MyStore } from '../context/myStore';
 
 const ArchivesCourier = () => {
-    const {token} = useContext(MyStore)
+    const {token , domaineURI} = useContext(MyStore)
     const [archives, setArchives ] = useState([]);
     const Headers = {
         headers: {
@@ -18,7 +18,7 @@ const ArchivesCourier = () => {
       };
 
     useEffect(()=>{
-        axios.get('http://localhost:3002/archives/couriers',Headers)
+        axios.get(`${domaineURI}/archives/couriers`,Headers)
         .then(res => setArchives(res.data))
         .catch((err) => console.log(err))
     },[]);
@@ -37,7 +37,7 @@ const ArchivesCourier = () => {
       setAfficherConfirmation(false);
       // Appelez ici la fonction de suppression réelle
       // props.onSuppression() ou quelque chose de similaire
-      axios.delete('http://localhost:3002/archives/couriers',Headers)
+      axios.delete(`${domaineURI}/archives/couriers`,Headers)
         .then(res => setArchives(res.data))
         .catch((err) => console.log(err))
     };

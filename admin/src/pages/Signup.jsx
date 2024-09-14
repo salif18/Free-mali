@@ -8,16 +8,16 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const Signup = () => {
-    const { login, userId, getMyData, isInLine, getMyProfileData } =
+    const { login, userId, getMyData, isInLine, getMyProfileData, domaineURI } =
     useContext(MyStore);
     const [errorMessage,setErrorMessage] =useState('')
     const [isView, setIsView] = useState(false)
   //API de registre signup
-  const url = "http://localhost:3002/auth/admin/signup";
+  const url = `${domaineURI}/auth/admin/signup`;
   //url de recuperation des donnes de user apres etre connecter
-  const urlGET = `http://localhost:3002/auth/admin/data/${userId}`;
+  const urlGET = `${domaineURI}/auth/admin/data/${userId}`;
   //url pour recuperer le profile de utilisateur connecter
-  const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`;
+  const PROFILGET = `${domaineURI}/profiles/myProfile/${userId}`;
 
   const navigate = useNavigate();
   const initialValue = {

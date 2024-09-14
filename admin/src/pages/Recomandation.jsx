@@ -7,7 +7,7 @@ import axios from 'axios'
 import { useState } from 'react';
 
 const Recomandation = () => {
-    const { recomandation,setClients,setUsers, setRecomandation,token } = useContext(MyStore);
+    const { recomandation,setClients,setUsers,domaineURI, setRecomandation,token } = useContext(MyStore);
   
     const Headers = {
       headers: {
@@ -18,7 +18,7 @@ const Recomandation = () => {
     
     //recuperer les products
     useEffect(()=>{
-      axios.get('http://localhost:3002/auth/users&Profile',Headers)
+      axios.get(`${domaineURI}/auth/users&Profile`,Headers)
       .then((res)=>{
         res && setUsers(res.data);
         setClients(res.data.filter((x)=>x.isPrestataire === false))
@@ -26,7 +26,7 @@ const Recomandation = () => {
     },[]);
 
     useEffect(()=>{
-        axios.get('http://localhost:3002/recomandations',Headers)
+        axios.get(`${domaineURI}/recomandations`,Headers)
         .then((res) => 
          res && setRecomandation(res.data))
         .catch((err) => console.log(err))

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
+import { MyStore } from "../context/myStore";
 
 const Comfirmation = () => {
   // Extraire le token de l'URL
   // Afficher le formulaire de réinitialisation avec le token
   const { token } = useParams();
-
+  const { domaineURI } = useContext(MyStore)
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -28,7 +29,7 @@ const Comfirmation = () => {
       e.preventDefault();
       try {
         const response = await axios.post(
-          "http://localhost:3002/auth/admin/validPassword",
+          `${domaineURI}/auth/admin/validPassword`,
           { token, password, confirmPassword }
         );
         if (response) {

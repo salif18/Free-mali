@@ -6,7 +6,7 @@ import { MyStore } from "../context/myStore";
 import Commentaires from "../constants/cards/commentaires";
 
 const SingleOffre = () => {
-  const { isInLine, users, defaultImage, token } = useContext(MyStore)
+  const { isInLine, users, defaultImage, domaineURI,token } = useContext(MyStore)
   const [oneOffre, setOneOffre] = useState([]);
   const [commentaires, setCommentaires] = useState([]);
  const navigate = useNavigate()
@@ -21,7 +21,7 @@ const SingleOffre = () => {
   useEffect(() => {
     const getItem = async () => {
       try {
-        const res = await axios.get(`http://localhost:3002/offres/${id}`,Headers);
+        const res = await axios.get(`${domaineURI}/offres/${id}`,Headers);
         if (res) {
           const data = await res.data;
           const { commentaires } = res.data;

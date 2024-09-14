@@ -29,7 +29,7 @@ const Home = () => {
   
   //recuperer les commandes
   useEffect(()=>{
-    axios.get('http://localhost:3002/offres',Headers)
+    axios.get(`${domaineURI}/offres`,Headers)
     .then((res)=>{
       res && setOffres(res.data)
     }).catch(err => console.log(err))
@@ -37,7 +37,7 @@ const Home = () => {
 
   //recuperer les products
   useEffect(()=>{
-    axios.get('http://localhost:3002/auth/users&Profile',Headers)
+    axios.get(`${domaineURI}/auth/users&Profile`,Headers)
     .then((res)=>{
       res && setUsers(res.data);
       setClients(res.data.filter((x)=>x.isPrestataire === false))
@@ -78,7 +78,7 @@ const Home = () => {
   },[MONTHS]);
 
  
-  const profiladmin = `http://localhost:3002/profils/admin/user/${userId}`
+  const profiladmin = `${domaineURI}/profils/admin/user/${userId}`
   //recuperation de profil
   useEffect(()=>{
    axios.get(profiladmin,Headers)

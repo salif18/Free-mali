@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import { MyStore } from '../context/myStore';
 //import { useNavigate } from 'react-router';
 
 const Reinitialisation = () => {
-
+const { domaineURI } = useContext(MyStore)
   //const navigate = useNavigate()
   const [numero, setNumero] = useState('');
   const [email, setEmail] = useState('')
@@ -21,7 +22,7 @@ const Reinitialisation = () => {
     if(email.length > 0){
     e.preventDefault();
     try{
-     const response = await axios.post('http://localhost:3002/auth/admin/reset', {numero ,email })
+     const response = await axios.post(`${domaineURI}/auth/admin/reset`, {numero ,email })
        if(response){
        setMessage(response.data.message);
        }

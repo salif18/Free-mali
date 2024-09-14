@@ -8,7 +8,7 @@ import io from "socket.io-client";
 import { Navigate } from "react-router";
 
 // url de socket
-const socket = io("http://localhost:3002");
+const socket = io("https://free-mali-restapi.vercel.app");
 
 const Messagerie = () => {
   const { userId, token, isInLine, chaters,setChaters,domaineURL, message, setMessage ,setCurrenChat, currenChat} = useContext(MyStore);

@@ -7,14 +7,15 @@ import { useNavigate } from "react-router";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 //API de registre login
-const url = "http://localhost:3002/auth/admin/login";
+
 
 const Login = () => {
     const [errorMessage,setErrorMessage] =useState('')
   const [isView, setIsView] = useState(false)
 
   const navigate = useNavigate();
-  const { login } = useContext(MyStore);
+  const { login ,domaineURI} = useContext(MyStore);
+  const url = `${domaineURI}/auth/admin/login`;
  const RegexNumero = /numero/ 
  const RegexPassowrd =/mot de passe/
   const initialValue = {

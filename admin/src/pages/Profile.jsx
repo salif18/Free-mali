@@ -6,12 +6,12 @@ import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 const Profile = () => {
-  const { isInLine, defaultImage,setProfil, profil, logout, token, userId } =
+  const { isInLine, defaultImage,domaineURI,setProfil, profil, logout, token, userId } =
     useContext(MyStore);
   const navigate = useNavigate();
-  const url = `http://localhost:3002/profils/admin`;
-  const putUrl = `http://localhost:3002/profils/admin/update/${userId}`;
-  const newPhotoUrl = `http://localhost:3002/profils/admin/photo/${userId}`;
+  const url = `${domaineURI}/profils/admin`;
+  const putUrl = `${domaineURI}/profils/admin/update/${userId}`;
+  const newPhotoUrl = `${domaineURI}/profils/admin/photo/${userId}`;
 
   const Headers = {
     headers: {
@@ -21,7 +21,7 @@ const Profile = () => {
   };
 
   
-  const profiladmin = `http://localhost:3002/profils/admin/user/${userId}`
+  const profiladmin = `${domaineURI}/profils/admin/user/${userId}`
    //recuperation de profil
    useEffect(()=>{
     axios.get(profiladmin,Headers)
