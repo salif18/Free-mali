@@ -14,7 +14,7 @@ const server = http.createServer(app)
  const io = socketIO(server,
   { 
   cors:{
-    origin:'http://localhost:3000',
+    origin:'https://free-mali.vercel.app',
     //origin:"http://localhost:3001", 
     methods:['GET','POST']
   }}
