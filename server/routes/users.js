@@ -2,7 +2,7 @@
 const express = require('express')
 const usersControllers = require('../controllers/users')
 const gestionRouter = require('../controllers/gestionutilisateur');
-// const admin_ctrl = require('../controllers/admin');
+const admin_ctrl = require('../controllers/admin');
 const admin_recup = require('../controllers/adminRecuper');
 
 //configuration de route
@@ -30,8 +30,8 @@ router.get('/users/statistiques', usersControllers.statsUsers);
 router.put('/admin/:id/status',gestionRouter.approuPrestataire)
 router.put('/admin/isprestataire/status/:id/',usersControllers.modifyUser)
 //administrateur
-router.post('/admin/signup',usersControllers.signup);
-router.post('/admin/login',usersControllers.login);
+router.post('/admin/signup',admin_ctrl.signup);
+router.post('/admin/login',admin_ctrl.login);
 router.post('/admin/reset', admin_recup.reset);
 router.post('/admin/validPassword', admin_recup.Validation)
 router.get('/admin/data', admin_ctrl.getAdmin_data);
