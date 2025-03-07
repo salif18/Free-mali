@@ -17,7 +17,7 @@ router.post('/validation-password',usersControllers.Validation)
 router.get('/usersData/:userId',usersControllers.getUser)
 
 //reucper tous les utilisateur et leur profile
-router.get('/users&Profile',usersControllers.AllUsers)
+router.get('/users&Profile',usersControllers.AllUsers);
 
 //recuperer un seul utilisateur
 router.get('/user/:id',usersControllers.getOneUser) 
