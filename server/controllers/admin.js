@@ -14,7 +14,7 @@ const isTelNumberValid = (numero) => {
     return phoneUtil.isValidNumber(parsedNumber);
   } catch (err) {
     return false;
-  }
+  };
 };  
 
 
