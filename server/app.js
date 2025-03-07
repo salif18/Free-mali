@@ -16,6 +16,8 @@ const archiveCourierRouter = require('./routes/archiveCourier');
 const recomandationRouter = require('./routes/recomandation');
 const videosRtr = require('./routes/videos');
 const imagesRtr = require('./routes/images')
+const srtipeRouter = require('./routes/stripe')
+// const orangeRouter = require('./routes/orange_monney')
 
 //configurations
 app.use(cors());
@@ -36,6 +38,9 @@ app.use('/notifications',notificationRouter);
 app.use('/recomandations', recomandationRouter);
 app.use('/videos',videosRtr)
 app.use('/images',imagesRtr)
+app.use('/checkout',srtipeRouter)
+// app.use('/checkout',orangeRouter)
+
 
 //connection a la base de donnees
 Databases_MongoDB();
