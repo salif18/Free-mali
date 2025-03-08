@@ -3,6 +3,9 @@ const router = express.Router()
 const orangeController = require('../controllers/orange_monney_controller')
 
 router.post('/abonnement',orangeController.abonnePaiementMarchand)
-router.post("/transfere",orangeController.TransfertAvecCommission)
+router.post("/deposit",orangeController.depot)
+router.post("/retrait",orangeController.retrait)
+router.post("/transfert",orangeController.TransfertAvecCommission)
+router.get("/transactions/:userId",orangeController.getTransactions)
 
 module.exports= router
