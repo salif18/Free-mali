@@ -1,4 +1,5 @@
 //importations
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const axios = require("axios");
@@ -44,14 +45,14 @@ app.use('/checkout',srtipeRouter)
 
 // paypal
 const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
-const PAYPAL_SECRET = process.env.PAYPAL_SECRET;
+const PAYPAL_SECRET = process.env.PAYPAL_SECRET_KEY;
 const PAYPAL_API = "https://api-m.sandbox.paypal.com"; // Sandbox API
 
 // 🔹 1. Créer une commande PayPal
 app.post("/create-paypal-order", async (req, res) => {
   try {
     const { amount, currency } = req.body;
-
+console.log(req.body)
     // Générer un token d'authentification
     const auth = await axios.post(
       `${PAYPAL_API}/v1/oauth2/token`,
@@ -88,7 +89,7 @@ app.post("/create-paypal-order", async (req, res) => {
       }
     );
 
-    res.json(order.data);
+    res.json({ id: order.data.id });
   } catch (error) {
     res.status(500).json(error.response.data);
   }
@@ -130,6 +131,7 @@ app.post("/capture-paypal-order/:orderID", async (req, res) => {
     res.status(500).json(error.response.data);
   }
 });
+
 
 
 //connection a la base de donnees
