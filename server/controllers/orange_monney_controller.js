@@ -15,9 +15,9 @@ const getAccessToken = async () => {
   return response.data.access_token;
 };
 
-exports.PayementOrange = async (req, res) => {
+exports.PayeOrange = async (req, res) => {
   try {
-    console.log(req.body)
+    console.log("Corps de la requête :", req.body); // Vérifiez les données reçues
     const accessToken = await getAccessToken();
     const { phoneNumber, amount } = req.body;
 
