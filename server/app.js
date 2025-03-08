@@ -17,9 +17,9 @@ const archiveCourierRouter = require('./routes/archiveCourier');
 const recomandationRouter = require('./routes/recomandation');
 const videosRtr = require('./routes/videos');
 const imagesRtr = require('./routes/images')
-const srtipeRouter = require('./routes/stripe')
+const srtipeRouter = require('./routes/stripe_route')
 const paypalRouter = require("./routes/paypal_route")
-// const orangeRouter = require('./routes/orange_monney')
+const orangeRouter = require('./routes/orange_monney_route')
 
 //configurations
 app.use(cors());
@@ -40,9 +40,9 @@ app.use('/notifications',notificationRouter);
 app.use('/recomandations', recomandationRouter);
 app.use('/videos',videosRtr)
 app.use('/images',imagesRtr)
-app.use('/checkout',srtipeRouter)
+app.use('/checkout-stripe',srtipeRouter)
 app.use('/checkout-paypal',paypalRouter)
-// app.use('/checkout',orangeRouter)
+app.use('/checkout-orange',orangeRouter)
 
 
 
