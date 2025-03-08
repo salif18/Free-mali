@@ -7,5 +7,5 @@ router.post("/deposit",orangeController.depot)
 router.post("/retrait",orangeController.retrait)
 router.post("/transfert",orangeController.TransfertAvecCommission)
 router.get("/transactions/:userId",orangeController.getTransactions)
-
+router.get("/solde/:userId",orangeController.getSolde)
 module.exports= router
